@@ -1,0 +1,11 @@
+/* some style */
+
+body {
+    font-family: "Verdana", sans-serif;
+}
+
+code,
+pre {
+    font-family: "Inconsolata LGC", "Inconsolata-dz", "Inconsolata", monospace;
+}
+
