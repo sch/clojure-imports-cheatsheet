@@ -1,7 +1,9 @@
 /* some style */
 
 body {
-    font-family: "Verdana", sans-serif;
+    font-family: "Georgia", serif;
+    color: #444;
+    margin: 0;
 }
 
 code,
@@ -9,3 +11,50 @@ pre {
     font-family: "Inconsolata LGC", "Inconsolata-dz", "Inconsolata", monospace;
 }
 
+h1, h2 {
+    font-family: "Avenir Next";
+    font-weight: 400;
+}
+
+.Code {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 3em;
+}
+
+
+.Sheet {
+}
+.Sheet-code {
+    background-color: #444;
+    box-sizing: border-box;
+    color: white;
+    display: table;
+    width: 100%;
+}
+.Sheet-prose {
+    box-sizing: border-box;
+    padding-left: 0.618em;
+    padding-right: 0.618em;
+}
+
+@media screen and (min-width: 60em) {
+    .Sheet-code {
+        float: left;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 38%;
+        height: 100%;
+    }
+    .Sheet-prose {
+        box-sizing: border-box;
+        margin-left: 38%;
+        overflow: hidden;
+        min-width: 30em;
+        padding-left: 2em;
+        padding-right: 2em;
+    }
+}
