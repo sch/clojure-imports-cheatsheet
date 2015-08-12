@@ -40,12 +40,17 @@
             :lineHeight 1.45}}
    text))
 
+(defn gist [username number] (str "https://gist.github.com/" username "/" number))
 (defn code [text] (dom/pre text))
+(defn link [text url] (dom/a {:href url} text))
 
+(def eighth-light-blogpost "https://blog.8thlight.com/colin-jones/2010/12/05/clojure-libs-and-namespaces-require-use-import-and-ns.html")
+(def a-good-gist (gist "ghoseb" 287710))
 (def prose-stuff
   (dom/div
    (dom/h1 {:style {:marginTop "2em"}} "How do you use libraries in Clojure?")
    (example-component
+    (paragraph "Bringing in code in clojure is kind of weird since it's this imperative thing. It used to be more imperative, when people still used the :use directive. Now it's just kind of something with an implicit ordering.")
     (paragraph (str "When you write code in Clojure, you have to put it in a namespace. "
                     "The ns macro lets you name that file's code, and bring code from "
                     "other namespaces into scope."))
@@ -60,9 +65,15 @@
    (paragraph "This is the preferred way of handling imports in Clojure, as it shortens the amount you have to type while hinting the reader on where the function came from:")
    (code "(json/read-str some-json-string)")
    (paragraph "You could skip the namespace entirely and just pluck out individual functions from the namespace:")
-   (code "(require [clojure.data.json :refer read-str])\n(read-str some-json-string)")
-   (paragraph "This can be really nice for libraries like core.async, where ")
-   (code "(require [clojure.core.async :refer [go put <!]])")
+   (code "(:require [clojure.data.json :refer read-str])\n(read-str some-json-string)")
+   (paragraph "This can be really nice for libraries like core.async, where the names are pretty unique and using the qualified name makes the program read like a DSL")
+   (code "(:require [clojure.core.async :refer [go put <!]])")
+   (paragraph "Sticking to the namespace is always a good rule of thumb though.")
+   (paragraph "Sometimes you may need to import things into your namespace. What's that about?")
+   (code "(:import [java.util.Date])")
+   (paragraph "Well this is one of those cases where you can see the host platforms bleeding through. You use imports to bring in bits of Java/Javascript/C# code.")
+   (dom/hr nil)
+   (paragraph (dom/div "read through " (link "this blog post" eighth-light-blogpost) " or " (link "this gist" a-good-gist) " for more info"))
    ))
 
 
